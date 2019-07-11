@@ -357,12 +357,12 @@ uint64_t des_decrypt(const uint64_t ciphertext, const uint64_t key)
     R = (u >> 32) & 0xFFFFFFFF;
 
     // rounds
-    for(int i = NUM_ROUNDS; i >= 1; i--)
+    for(int i = NUM_ROUNDS - 1; i >= 0; i--)
     {
         // do Feistel structure
         temp = R;
         R = L;
-        L = temp ^ f(R, round_keys[i - 1]);
+        L = temp ^ f(R, round_keys[i]);
     }
 
     // produce plaintext
